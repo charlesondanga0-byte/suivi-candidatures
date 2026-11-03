@@ -1,3 +1,4 @@
+import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
@@ -8,6 +9,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.db import connexion, init_db
 from app.models import CandidatureIn, Statut
+from app.seed import inserer_demo
 
 BASE = Path(__file__).resolve().parent.parent
 
@@ -15,6 +17,8 @@ BASE = Path(__file__).resolve().parent.parent
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    if os.environ.get("DEMO_MODE") == "1":
+        inserer_demo()
     yield
 
 

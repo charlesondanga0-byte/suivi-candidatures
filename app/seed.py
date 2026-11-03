@@ -8,12 +8,21 @@ DEMO = [
     ("Données Fictives", "Assistant administrateur système", "Refus", "2026-10-15"),
 ]
 
-if __name__ == "__main__":
+
+def inserer_demo():
+    """Ajoute les données fictives si la base est vide. Renvoie le nombre de lignes ajoutées."""
     init_db()
     with connexion() as conn:
+        total = conn.execute("SELECT COUNT(*) FROM candidatures").fetchone()[0]
+        if total > 0:
+            return 0
         conn.executemany(
             "INSERT INTO candidatures (entreprise, poste, statut, date_candidature) "
             "VALUES (?, ?, ?, ?)",
             DEMO,
         )
-    print(f"{len(DEMO)} candidatures de démonstration ajoutées")
+    return len(DEMO)
+
+
+if __name__ == "__main__":
+    print(f"{inserer_demo()} candidatures de démonstration ajoutées")
