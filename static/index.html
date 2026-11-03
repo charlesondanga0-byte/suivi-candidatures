@@ -5,13 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Suivi de candidatures</title>
   <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
 </head>
 <body>
   <header>
     <h1>Suivi de candidatures</h1>
+    <button id="nouvelle" class="principal">+ Nouvelle candidature</button>
   </header>
+
   <main>
-    <p>L'application démarre. Les candidatures arriveront à l'étape 2.</p>
+    <section id="stats" class="stats" aria-label="Statistiques"></section>
+
+    <section class="filtres">
+      <label>Statut
+        <select id="filtre-statut"><option value="">Tous</option></select>
+      </label>
+      <label>Recherche
+        <input id="recherche" type="search" placeholder="Entreprise ou poste">
+      </label>
+    </section>
+
+    <table>
+      <thead>
+        <tr><th>Entreprise</th><th>Poste</th><th>Statut</th><th>Date</th><th></th></tr>
+      </thead>
+      <tbody id="corps"></tbody>
+    </table>
+    <p id="vide" class="vide" hidden>Aucune candidature à afficher.</p>
   </main>
+
+  <dialog id="dialogue">
+    <form id="formulaire">
+      <h2 id="titre-dialogue">Nouvelle candidature</h2>
+      <input type="hidden" name="id">
+      <label>Entreprise <input name="entreprise" required maxlength="100"></label>
+      <label>Poste <input name="poste" required maxlength="100"></label>
+      <label>Lien de l'offre <input name="lien" type="url" maxlength="500" placeholder="https://..."></label>
+      <label>Statut <select name="statut"></select></label>
+      <label>Date <input name="date_candidature" type="date" required></label>
+      <label>Notes <textarea name="notes" rows="3" maxlength="2000"></textarea></label>
+      <div class="boutons">
+        <button type="button" id="annuler">Annuler</button>
+        <button type="submit" class="principal">Enregistrer</button>
+      </div>
+    </form>
+  </dialog>
 </body>
 </html>
