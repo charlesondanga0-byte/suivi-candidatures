@@ -3,6 +3,8 @@ services:
     build: .
     ports:
       - "8000:8000"
+    environment:
+      DEMO_MODE: ${DEMO_MODE:-0}
     volumes:
       - donnees:/data
 
