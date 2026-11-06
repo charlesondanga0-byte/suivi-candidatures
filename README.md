@@ -2,6 +2,8 @@
 
 ![CI](https://github.com/charlesondanga0-byte/suivi-candidatures/actions/workflows/ci.yml/badge.svg)
 
+**Live demo** (fictional data, may take a minute to wake up): https://suivi-candidatures-7bj3.onrender.com/
+
 A small web app to track job applications: add, edit, filter and count them by status.
 Built end to end to practice a full development workflow: API, database, tests, containers and CI.
 
